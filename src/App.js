@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./pinForm.css";
+import "./pinDetail.css";
+import "material-icons/iconfont/material-icons.css";
+import PincodeForm from "./Components/PincodeForm";
+import PincodeDetails from "./Components/PincodeDetails";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
+const App = () => {
+  const [pincode,setPincode] = useState("");
+
+  function handleSubmit(pincode){
+    setPincode(pincode);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Routes>
+        <Route path="/" element={<PincodeForm onSubmit={handleSubmit} />} />
+        <Route path="/pincodeDetails" element={<PincodeDetails pincode={pincode} />}/>
+      </Routes>
   );
 }
 
